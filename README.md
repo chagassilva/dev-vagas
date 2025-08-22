@@ -44,4 +44,3 @@ flowchart TD
     A[Busca no LinkedIn] --> B[n8n Workflow]
     B --> C[Processamento de Dados + IA]
     C --> D[Classificação de Vagas]
-    D --> E[Organização e Histórico]
