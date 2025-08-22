@@ -6,10 +6,10 @@ async function buscarVagas() {
   const estado = document.getElementById("estado").value || "";
   //const resultadoDiv = document.getElementById("resultado");
 
-  if (!skill) {
-    resultadoDiv.innerHTML = "<p style='color:red'>Digite uma skill primeiro 🚨</p>";
-    return;
-  }
+  // if (!skill) {
+  //   resultadoDiv.innerHTML = "<p style='color:red'>Digite uma skill primeiro 🚨</p>";
+  //   return;
+  // }
 
   // Monta URL do webhook n8n com skill, tipo e estado
   let webhookUrl = `https://n8n.chagassilva.com/webhook/go-vagas?skill=${encodeURIComponent(skill)}&tipo=${tipo}`;
