@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Busca de Vagas</title>
+    <title>Vagas Remotas de Hoje - N8N, Low-Code e mais</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Encontre vagas remotas no LinkedIn de hoje para skills como N8N, Low-Code, Python, React e muito mais."
+    />
+    <meta
+      name="keywords"
+      content="vagas, remoto, linkedin, n8n, low-code, python, react, hoje, empregos"
+    />
+    <meta name="author" content="Seu Nome ou Projeto" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://www.devvagas.chagassilva.com" />
+    <!-- Carregar Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Open Graph (para redes sociais como LinkedIn, Facebook, WhatsApp) -->
+    <meta
+      property="og:title"
+      content="Vagas Remotas de Hoje - Skills N8N, Low-Code e mais"
+    />
+    <meta
+      property="og:description"
+      content="Busca personalizada de vagas remotas no LinkedIn filtradas para o dia atual."
+    />
+    <meta property="og:url" content="https://www.devvagas.chagassilva.com" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://www.devvagas.chagassilva.com/assets/thumb-vagas.png"
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Vagas Remotas de Hoje - Skills N8N, Low-Code e mais"
+    />
+    <meta
+      name="twitter:description"
+      content="Encontre agora vagas remotas de hoje no LinkedIn."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.devvagas.chagassilva.com/assets/thumb-vagas.png"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Busca de Vagas Remotas",
+        "url": "https://www.devvagas.chagassilva.com",
+        "description": "Ferramenta que gera links de busca do Google com vagas remotas do LinkedIn filtradas para o dia atual, por qualquer skill desejada.",
+        "applicationCategory": "JobSearchApp",
+        "operatingSystem": "Web",
+        "creator": {
+          "@type": "Person",
+          "name": "Chagas Silva"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "BRL"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://n8n.chagassilva.com/vagas-remotas?skill={skill}",
+          "query-input": "required name=skill"
+        }
+      }
+    </script>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+  </head>
+  <body>
+    <main>
+      <section class="container">
+        <div class="buscar-vaga">
+          <div class="logo">
+            <i
+              class="devicon-linkedin-plain-wordmark colored"
+              style="font-size: 150px;"
+            ></i>
+          </div>
+          <h1>
+            <span>Encontre Sua Próxima Oportunidade!</span>
+          </h1>
+
+          <h4>
+            <p class="typed-text"></p>
+          </h4>
+          <input
+            id="skill"
+            type="text"
+            placeholder="Digite a skill (ex:logistica, supervisor, gerente, n8n, react, python, javascript)"
+          />
+        </div>
+
+        <div class="tipodevaga">
+          <label>Tipo de vaga:</label>
+          <div class="anuncio-elemento">
+            <input type="radio" name="tipo" value="remoto" checked />
+            <i class="fas fa-laptop"></i><span> Remoto</span> 
+            <input type="radio" name="tipo" value="presencial" />
+            <i class="fas fa-map-marker-alt"></i><span> Presencial</span> 
+            <input type="radio" name="tipo" value="hibrido" />
+            <i class="fas fa-building"></i><span> Híbrido</span>  
+          </div>
+        </div>
+       
+
+        <div class="experience">
+          <label>Qual nível de senioridade você busca?</label>
+          <div class="anuncio-elemento">
+            <input type="radio" name="nivel" value="estagio" checked /><i
+              class="fa fa-user-graduate"
+            ></i
+            ><span>Estágio</span> <input type="radio" name="nivel" value="assistente" /><i
+              class="fa fa-briefcase"
+            ></i>
+            <span>Assistente</span> <input type="radio" name="nivel" value="junior" /><i
+              class="fa fa-toolbox"
+            ></i>
+            <span>Júnior</span> <input type="radio" name="nivel" value="pl" /><i
+              class="fa fa-briefcase"
+            ></i
+            ><span>Pleno / Sênior</span> 
+          </div>
+        </div>
+        
+
+        <div class="anuncio">
+          <label>Tempo do anúncio</label>
+          <div class="anuncio-elemento">
+            <input type="radio" name="time" value="hoje" checked /><i
+              class="fas fa-clock"
+            ></i>
+            <span>Hoje</span> <input type="radio" name="time" value="semana" /><i
+              class="fas fa-calendar-week"
+            ></i>
+            <span>Última semana</span> <input type="radio" name="time" value="mes" /><i
+              class="fas fa-calendar-days"
+            ></i>
+            <span>Último mës</span> 
+          </div>
+        </div>
+       
+        <div class="container-search-estado">
+          <div class="estados">
+            <label>Estado:</label>
+            <select id="estado">
+              <option value="">Todos</option>
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+            </select>
+          </div>
+
+          <button onclick="buscarVagas()">
+            <i class="fas fa-search"></i> Buscar vagas
+          </button>
+        </div>
+        <div id="resultado"></div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+    <script src="typed.js"></script>
+  </body>
+</html>

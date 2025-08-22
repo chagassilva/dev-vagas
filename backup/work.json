@@ -1,0 +1,118 @@
+{
+  "name": "Busca de Vagas LinkedIn com Token",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "busca-vagas",
+        "httpMethod": "POST",
+        "responseMode": "lastNode"
+      },
+      "name": "Webhook Entrada",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.token === $env.SEARCH_TOKEN}}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "name": "IF Token Válido",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "const skillIn = ($json.skill || '').trim();\nif (!skillIn) {\n  return [{ error: true, status: 400, message: 'Campo \"skill\" é obrigatório.' }];\n}\n\nconst tipoIn = String($json.tipo || 'remoto').toLowerCase();\nconst tipo = (tipoIn === 'presencial') ? 'presencial' : 'remoto';\n\nconst mapTempo = { d:'d', w:'w', m:'m', y:'y' };\nconst tempoIn = String($json.tempo || 'd').toLowerCase();\nconst tempo = mapTempo[tempoIn] || 'd';\n\nreturn [{ skill: skillIn, tipo, tempo }];"
+      },
+      "name": "Fn Normalizar",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [750, 250]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.error === true}}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "name": "IF Erro",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [950, 250]
+    },
+    {
+      "parameters": {
+        "functionCode": "const { skill, tipo, tempo } = $json;\nconst base = \"https://www.google.com/search?q=site:linkedin.com/jobs+intitle:(\";\nlet filtroTipo = tipo === 'remoto' ? '+AND+remoto' : '+AND+presencial';\nconst url = `${base}${encodeURIComponent(skill)})${filtroTipo}&tbs=qdr:${tempo}`;\nreturn [{ skill, tipo, tempo, url }];"
+      },
+      "name": "Fn Montar URL",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1200, 250]
+    },
+    {
+      "parameters": {
+        "responseMode": "lastNode",
+        "responseData": "json",
+        "responseBody": "={\n  \"skill\": $json.skill,\n  \"tipo\": $json.tipo,\n  \"tempo\": $json.tempo,\n  \"url\": $json.url,\n  \"resposta\": `Aqui está o link de busca: ${$json.url}`\n}"
+      },
+      "name": "Responder 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1450, 250]
+    },
+    {
+      "parameters": {
+        "responseMode": "lastNode",
+        "responseData": "json",
+        "responseBody": "={ \"status\": \"401\", \"message\": \"Token inválido ou ausente.\" }",
+        "options": { "statusCode": 401 }
+      },
+      "name": "Responder 401",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [750, 400]
+    },
+    {
+      "parameters": {
+        "responseMode": "lastNode",
+        "responseData": "json",
+        "responseBody": "={ \"status\": \"400\", \"message\": $json.message || 'Requisição inválida' }",
+        "options": { "statusCode": 400 }
+      },
+      "name": "Responder 400",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1150, 150]
+    }
+  ],
+  "connections": {
+    "Webhook Entrada": { "main": [[{"node":"IF Token Válido","type":"main","index":0}]] },
+    "IF Token Válido": {
+      "main": [
+        [{"node":"Responder 401","type":"main","index":1}],
+        [{"node":"Fn Normalizar","type":"main","index":0}]
+      ]
+    },
+    "Fn Normalizar": { "main": [[{"node":"IF Erro","type":"main","index":0}]] },
+    "IF Erro": {
+      "main": [
+        [{"node":"Responder 400","type":"main","index":0}],
+        [{"node":"Fn Montar URL","type":"main","index":1}]
+      ]
+    },
+    "Fn Montar URL": { "main": [[{"node":"Responder 200","type":"main","index":0}]] }
+  }
+}
