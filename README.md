@@ -14,16 +14,16 @@
 
 ## 📌 Sobre  
 
-**DevVagas** é uma aplicação voltada para automação e otimização no processo de **cadastro de vagas de emprego**.  
+**DevVagas** é uma automação inteligente para **buscar vagas de emprego no LinkedIn**.  
 
-Combinando **Front-End moderno** com **fluxos inteligentes em n8n** e **modelos de Inteligência Artificial**, o projeto permite agilizar candidaturas, reduzir erros manuais e melhorar a produtividade.  
+A proposta é simplificar a etapa de **pesquisa e organização de vagas**, economizando tempo e centralizando oportunidades relevantes em um fluxo automatizado.  
 
 **Funcionalidades principais:**  
-- Automação de cadastros em diferentes plataformas.  
-- Integração com formulários e APIs.  
-- Uso de **IA** para análise e classificação de dados de candidaturas.  
-- Organização e histórico das vagas aplicadas.  
-- Layout simples, responsivo e direto.  
+- 🔍 Busca automatizada de vagas no **LinkedIn**.  
+- 📑 Organização de resultados em formato estruturado.  
+- ⚡ Integração com **n8n** para automação dos fluxos.  
+- 🧠 Uso de **IA** para filtrar, classificar e ranquear oportunidades.  
+- 📊 Histórico centralizado para acompanhamento das candidaturas.  
 
 ---
 
@@ -37,21 +37,11 @@ Combinando **Front-End moderno** com **fluxos inteligentes em n8n** e **modelos 
 
 ---
 
-## 🎨 Funcionalidades  
-
-- 📑 Cadastro automatizado de vagas.  
-- ⚡ Integração com formulários e plataformas de emprego.  
-- 🤖 Automação de fluxos com **n8n**.  
-- 🧠 Aplicação de **IA** para análise de dados de candidatura.  
-- 📊 Histórico e organização centralizada.  
-
----
-
-## 🖼️ Exemplo de Fluxo  
+## 🖼️ Fluxo Simplificado  
 
 ```mermaid
 flowchart TD
-    A[Formulário HTML/CSS/JS] --> B[n8n Workflow]
+    A[Busca no LinkedIn] --> B[n8n Workflow]
     B --> C[Processamento de Dados + IA]
-    C --> D[Cadastro Automático em Plataforma]
-    D --> E[Confirmação e Histórico]
+    C --> D[Classificação de Vagas]
+    D --> E[Organização e Histórico]
