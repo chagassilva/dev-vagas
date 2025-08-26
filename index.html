@@ -106,7 +106,9 @@
           </h4>
           <input
             id="skill"
+            class="input-empety"
             type="text"
+            required
             placeholder="Digite a skill (ex:logistica, supervisor, gerente, n8n, react, python, javascript)"
           />
         </div>
@@ -123,6 +125,15 @@
           </div>
         </div>
        
+         <div class="tipocandidatura">
+          <label>Tipo de Candidatura:</label>
+          <div class="anuncio-elemento">
+            <input type="radio" name="candidatura" value="normal" checked />
+            <i class="fas fa-paper-plane"></i><span> Normal</span> 
+            <input type="radio" name="candidatura" value="simplificada" />
+            <i class="fas fa-bolt"></i><span> Simplificada</span> 
+          </div>
+        </div>
 
         <div class="experience">
           <label>Qual nível de senioridade você busca?</label>
@@ -140,6 +151,17 @@
               class="fa fa-briefcase"
             ></i
             ><span>Pleno / Sênior</span> 
+
+            <input type="radio" name="nivel" value="diretor" /><i
+              class="fa fa-user-ti"
+            ></i>
+            <span>Diretor</span>
+
+            <input type="radio" name="nivel" value="executivo" /><i
+              class="fa fa-user-ti"
+            ></i>
+            <span>Executivo</span>
+            
           </div>
         </div>
         
@@ -195,7 +217,7 @@
             </select>
           </div>
 
-          <button onclick="buscarVagas()">
+          <button class="sendinfo" onclick="buscarVagas()" disabled>
             <i class="fas fa-search"></i> Buscar vagas
           </button>
         </div>
